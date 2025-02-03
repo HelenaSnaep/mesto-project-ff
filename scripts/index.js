@@ -15,15 +15,16 @@ function createCard(cardData, onDeleteCard) {
   cardImage.src = cardData.link;
   cardImage.alt = cardData.alt;
 
-  cardDeleteButton.addEventListener("click", onDeleteCard);
+  cardDeleteButton.addEventListener("click", () => onDeleteCard(cardElement));
 
   return cardElement;
 }
 // @todo: Функция удаления карточки
-function onDeleteCard(event) {
-  const cardElement = event.target.closest(".card");
-  cardElement.remove();
-}
+function onDeleteCard(card) { 
+
+    card.remove(); 
+  
+  }
 // @todo: Вывести карточки на страницу
 initialCards.forEach(function(cardData) {
     placesList.append(createCard(cardData, onDeleteCard));
