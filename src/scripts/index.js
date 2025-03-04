@@ -13,7 +13,9 @@ const profileTitle = profile.querySelector('.profile__title');
 
 const profilePopup = document.querySelector('.popup_type_edit');
 const imagePopup = document.querySelector('.popup_type_image');
+const popupImage = imagePopup.querySelector('.popup__image');
 const newCardPopup = document.querySelector('.popup_type_new-card');
+const imagePopupCaption = imagePopup.querySelector('.popup__caption');
 const popups = document.querySelectorAll('.popup');
 
 
@@ -22,12 +24,11 @@ const formEditProfile = forms['edit-profile'];
 const formNewPlace = forms['new-place'];
 
 function openImagePopup(link, name) {
-  const popupCaption = imagePopup.querySelector('.popup__caption');
-  popupCaption.textContent = name;
-  const popupImage = imagePopup.querySelector('.popup__image');
+  openModal(imagePopup);
+  imagePopupCaption.textContent = name;
   popupImage.alt = name;
   popupImage.src = link;
-  openModal(imagePopup);
+ 
 }
 
 function handleEditProfileFormSubmit(event) {
