@@ -19,7 +19,8 @@ import {
 
 const placesList = document.querySelector(".places__list");
 const profile = document.querySelector(".profile");
-const profileImage = profile.querySelector(".profile__image");
+const profileAvatar = profile.querySelector(".profile__image-wrapper");
+const profileAvatarImage = profile.querySelector(".profile__image");
 const profileAddButton = profile.querySelector(".profile__add-button");
 const profileDescription = profile.querySelector(".profile__description");
 const profileEditButton = profile.querySelector(".profile__edit-button");
@@ -124,7 +125,7 @@ function handleEditAvatarFormSubmit(event) {
 
   editAvatar(editAvatarInput.value)
     .then((userData) => {
-      profileImage.src = userData.avatar + `?t=${Date.now()}`;
+      profileAvatarImage.src = userData.avatar + `?t=${Date.now()}`;
       closeModal(editAvatarPopup);
       editAvatarForm.reset();
     })
@@ -150,7 +151,7 @@ profileEditButton.addEventListener("click", () => {
   openModal(profilePopup);
 });
 
-profileImage.addEventListener("click", () => {
+profileAvatar.addEventListener("click", () => {
   editAvatarForm.reset();
   clearValidation(editAvatarForm, validationConfig);
 
@@ -175,7 +176,7 @@ Promise.all([getUserInfo(), getCards()])
   .then(([userData, cards]) => {
     profileTitle.textContent = userData.name;
     profileDescription.textContent = userData.about;
-    profileImage.src = userData.avatar;
+    profileAvatarImage.src = userData.avatar;
 
     const userId = userData._id;
     cards.forEach((cardData) => {
