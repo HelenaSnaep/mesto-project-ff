@@ -58,9 +58,11 @@ function renderLoading(isLoading, button, initialText) {
   if (isLoading) {
     button.textContent = "Сохранение...";
     button.disabled = true;
+    button.classList.add('popup__button_disabled');
   } else {
     button.textContent = initialText;
     button.disabled = false;
+    button.classList.remove('popup__button_disabled');
   }
 }
 
@@ -88,6 +90,10 @@ function handleNewCardFormSubmit(event) {
     link: formNewPlace.elements["link"].value,
   };
 
+  const submitButton = formNewPlace.querySelector(validationConfig.submitButtonSelector);
+  const submitButtonText = submitButton.textContent;
+  renderLoading(true, submitButton, submitButtonText);
+
   postNewCard(cardData.name, cardData.link)
     .then((newCard) => {
       placesList.prepend(
@@ -107,6 +113,9 @@ function handleNewCardFormSubmit(event) {
     })
     .catch((err) => {
       console.log(`Ошибка при добавлении карточки: ${err.status}`);
+    })
+    .finally(() => {
+      renderLoading(false, submitButton, submitButtonText);
     });
 }
 
