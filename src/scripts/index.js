@@ -103,9 +103,6 @@ function handleNewCardFormSubmit(event) {
           newCard.owner._id,
           onDeleteCard,
           handleLikeCard,
-          removeCard,
-          setLike,
-          removeLike,
           openImagePopup
         )
       );
@@ -186,9 +183,6 @@ Promise.all([getUserInfo(), getCards()])
           userId,
           onDeleteCard,
           handleLikeCard,
-          setLike,
-          removeLike,
-          removeCard,
           openImagePopup
         )
       );
