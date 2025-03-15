@@ -79,6 +79,9 @@ function handleEditProfileFormSubmit(event) {
     })
     .catch((err) => {
       console.log(`Ошибка при обновлении профиля: ${err.status}`);
+    })
+    .finally(() => {
+      renderLoading(false, submitButton, submitButtonText);
     });
 }
 
@@ -136,6 +139,9 @@ function handleEditAvatarFormSubmit(event) {
     })
     .catch((err) => {
       console.log(`Ошибка при обновлении аватара: ${err.status}`);
+    })
+    .finally(() => {
+      renderLoading(false, submitButton, submitButtonText);
     });
 }
 
