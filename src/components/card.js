@@ -1,4 +1,4 @@
-import { setLike, removeLike } from '../components/api';
+import { setLike, removeLike, removeCard } from '../components/api';
 
 const cardTemplate = document.querySelector('#card-template').content;
 
