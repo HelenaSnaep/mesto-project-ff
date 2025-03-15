@@ -1,3 +1,3 @@
 # Проектная работа Mesto
-https://github.com/HelenaSnaep/mesto-project-ff
+[Мой репозиторий](https://github.com/HelenaSnaep/mesto-project-ff)
 

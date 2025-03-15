@@ -12,9 +12,6 @@ import {
   editAvatar,
   getCards,
   postNewCard,
-  removeCard,
-  setLike,
-  removeLike,
 } from "../components/api";
 
 const placesList = document.querySelector(".places__list");
@@ -58,12 +55,8 @@ function openImagePopup(link, name) {
 function renderLoading(isLoading, button, initialText) {
   if (isLoading) {
     button.textContent = "Сохранение...";
-    button.disabled = true;
-    button.classList.add('popup__button_disabled');
   } else {
     button.textContent = initialText;
-    button.disabled = false;
-    button.classList.remove('popup__button_disabled');
   }
 }
 
@@ -71,6 +64,12 @@ function handleEditProfileFormSubmit(event) {
   event.preventDefault();
   const name = formEditProfile.elements["name"].value;
   const about = formEditProfile.elements["description"].value;
+  const submitButton = formEditProfile.querySelector(
+    validationConfig.submitButtonSelector
+  );
+  const submitButtonText = submitButton.textContent;
+
+  renderLoading(true, submitButton, submitButtonText);
 
   editProfile(name, about)
     .then((userData) => {
@@ -91,8 +90,11 @@ function handleNewCardFormSubmit(event) {
     link: formNewPlace.elements["link"].value,
   };
 
-  const submitButton = formNewPlace.querySelector(validationConfig.submitButtonSelector);
+  const submitButton = formNewPlace.querySelector(
+    validationConfig.submitButtonSelector
+  );
   const submitButtonText = submitButton.textContent;
+
   renderLoading(true, submitButton, submitButtonText);
 
   postNewCard(cardData.name, cardData.link)
@@ -119,6 +121,12 @@ function handleNewCardFormSubmit(event) {
 
 function handleEditAvatarFormSubmit(event) {
   event.preventDefault();
+
+  const submitButton = editAvatarForm.querySelector(
+    validationConfig.submitButtonSelector
+  );
+  const submitButtonText = submitButton.textContent;
+  renderLoading(true, submitButton, submitButtonText);
 
   editAvatar(editAvatarInput.value)
     .then((userData) => {
